@@ -1,10 +1,35 @@
 header {
-    border: 10px solid black;
-    font: ;
     text-align: center;
-    height: 200px;
-    width: 80%;
+    height: 150px;
+    width: 90%;
     margin: 0 auto;
+}
+
+#welcome {
+    float: left;
+    padding: 160px;
+    position: absolute;
+}
+
+.col-md-4 {
+    float: right;
+    padding: 287px;
+}
+
+p {
+    margin-top: 9px;
+    color: red;
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 100px;
+    color: red;
+    font-family: 
+}
+
+h3{
+    font-size: 50px;
 }
 
 .underscore { 

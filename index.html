@@ -7,27 +7,47 @@
     <title>The Upside Down</title>
 
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>   
 <body>
         <div class="container">
                 <header>
-                    <h1>Upside Down</h1>
-                    <h3>Welcome to Hawkin's</h3>
+                    <img src="https://thedigitalwise.com/wp-content/uploads/2019/06/Stranger-Things-Season-3-header.jpg" alt="header img" height="230" width="1080">
                 </header>
-                <div class="underscores"></div>
-                <div class="rightGuess">right guess</div>
-                <div class="wrongGuess">wrong guess</div>
             </div>
+
+            
+
+            <div class="row">
+                    <div class="col-md-7">
+                            <div id="welcome">
+                                    <img src="https://2fvqxa3fxpfi2sm7tt1oe5ln-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/Stranger-Things-Header.jpg" alt="welcome" height="250" width="250">
+                                    <br>
+                                    <p>
+                                        Welcome to Hawkins Hangman! Press any key to venture to the upside down!
+                                    </p>
+                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="underscores"></div>
+                        <div id="rightGuess">right guess</div>
+                        <div id="wrongGuess">wrong guess</div>
+                    </div>
+                  </div>
+
+
+
+            
 </body>
 
 <script type="text/javascript">
 
 
 // array of words
-var strangeWords = ["eleven", "hopper", "starcourt mall", "mad max", "demidog", "hawkins"];
+var strangeWords = ["eleven", "hopper", "starcourt mall", "mad max", "demidog", "waffles", "hawkins"];
+
 
 //chooses word randomly
 let randNum = Math.floor(Math.random() * strangeWords.length);
@@ -37,14 +57,14 @@ let chosenWord = strangeWords[randNum];
 let underScore = [];
 
 // dom manipulation
-let docUnderScore = document.getElementsByClassName('underscore');
+let docUnderScore = document.getElementsByClassName('underscores');
 let docRightGuess = document.getElementsByClassName('rightGuess');
 let docWrongGuess = document.getElementsByClassName('wrongGuess');
 
 // create underscores based on length of word
-let generateUnderscore = () => {
-    for (let i = 0; i < chosenWord.lentgh; i++) {
-        underScore.push("_");
+let generateUnderscore = function() {
+    for (let i = 0; i < chosenWord.length; i++) {
+        underScore.push("_ ");
     }
     return underScore;
 }
@@ -59,22 +79,21 @@ document.addEventListener('keypress', (event) => {
     // add to users guess is right
         rightWord.push(keyword);
         
-    // replace underscore with righ letter
+    // replace underscore with right letter
         underScore[chosenWord.indexOf(keyword)] = keyword;
-            docUnderScore[0].innerHTML = underScore.join(' ');
-            RightGuess[0].innerHTML = rightWord;
+        document.getElementById("underscores").textContent = underScore.join(' ');
+        document.getElementById("rightGuess").textContent = rightWord;
     // checks to see if user word matches guesses
         if(underScore.join('') == chosenWord) {
             alert('You Win');
         }
-    }
-    else {
+    } else {
         wrongWord.push(keyword);
-        docWrongGuess[0].innerHTML = wrongWord;
+        document.getElementById("wrongGuess").textContent = wrongWord;
     }    
 });
+console.log(generateUnderscore().join(''));
+document.getElementById("underscores").textContent = generateUnderscore().join('')
 
-docUnderScore[0].innerHTML = generateUnderscore().join(' ');
-
-
+</script>
 </html>
