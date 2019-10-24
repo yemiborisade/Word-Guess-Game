@@ -32,6 +32,8 @@
                     </div>
                     <div class="col-md-4">
                         <div id="underscores"></div>
+                        Wins: <span id="wins"></span><br>
+                        Losses: <span id="losses"></span><br>
                         <div id="rightGuess">right guess</div>
                         <div id="wrongGuess">wrong guess</div>
                     </div>
@@ -94,6 +96,24 @@ document.addEventListener('keypress', (event) => {
 });
 console.log(generateUnderscore().join(''));
 document.getElementById("underscores").textContent = generateUnderscore().join('')
+
+// Generate wins and losses counter on page 
+
+var wins = 0;
+var losses = 0;
+var winsElem = document.getElementById("wins");
+var lossesElem = document.getElementById("losses");
+
+
+if (rightWord === chosenWord) {
+        wins++;
+      } else if (wrongWord == chosenWord) {
+        losses++;
+      }
+
+      winsElem.textContent = wins;
+      lossesElem.textContent = losses;
+      console.log(lossesElem)
 
 </script>
 </html>
