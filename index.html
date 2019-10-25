@@ -34,7 +34,7 @@
                         <div id="underscores"></div>
                         Wins: <span id="wins"></span><br>
                         Losses: <span id="losses"></span><br>
-                        <div id="rightGuess">right guess</div>
+
                         <div id="wrongGuess">wrong guess</div>
                     </div>
                   </div>
@@ -57,6 +57,10 @@ let rightWord = [];
 let wrongWord = [];
 let chosenWord = strangeWords[randNum];
 let underScore = [];
+var wins = 0;
+var losses = 0;
+var winsElem = document.getElementById("wins");
+var lossesElem = document.getElementById("losses");
 
 // dom manipulation
 let docUnderScore = document.getElementsByClassName('underscores');
@@ -80,32 +84,28 @@ document.addEventListener('keypress', (event) => {
     if (chosenWord.indexOf(keyword) > -1) {
     // add to users guess is right
         rightWord.push(keyword);
-        
+       
+    for (let i = 0; i < chosenWord.length; i++) {
+        if (chosenWord[i] === keyword)
+        underScore[i] = keyword
+    } 
     // replace underscore with right letter
-        underScore[chosenWord.indexOf(keyword)] = keyword;
+        // underScore[chosenWord.indexOf(keyword)] = keyword;
         document.getElementById("underscores").textContent = underScore.join(' ');
-        document.getElementById("rightGuess").textContent = rightWord;
+        // document.getElementById("rightGuess").textContent = rightWord;
     // checks to see if user word matches guesses
         if(underScore.join('') == chosenWord) {
             alert('You Win');
         }
-    } else {
-        wrongWord.push(keyword);
-        document.getElementById("wrongGuess").textContent = wrongWord;
-    }    
-});
-console.log(generateUnderscore().join(''));
-document.getElementById("underscores").textContent = generateUnderscore().join('')
-
-// Generate wins and losses counter on page 
-
-var wins = 0;
-var losses = 0;
-var winsElem = document.getElementById("wins");
-var lossesElem = document.getElementById("losses");
-
-
-if (rightWord === chosenWord) {
+    } 
+        if (wrongWord.indexOf(keyword) < 0) {
+            wrongWord.push(keyword);
+            document.getElementById("wrongGuess").textContent = wrongWord;
+        } else {
+            alert("Youve used this letter!")
+        }   console.log(underScore)
+        if (underScore.indexOf("_ ") === -1) {
+        console.log("wins")
         wins++;
       } else if (wrongWord == chosenWord) {
         losses++;
@@ -114,6 +114,15 @@ if (rightWord === chosenWord) {
       winsElem.textContent = wins;
       lossesElem.textContent = losses;
       console.log(lossesElem)
+
+});
+// console.log(generateUnderscore().join(''));
+document.getElementById("underscores").textContent = generateUnderscore().join('')
+
+// Generate wins and losses counter on page 
+
+
+
 
 </script>
 </html>
