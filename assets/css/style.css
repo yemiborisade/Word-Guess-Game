@@ -1,4 +1,5 @@
 header {
+    background-color: black;
     text-align: center;
     height: 150px;
     width: 90%;
@@ -6,12 +7,17 @@ header {
 }
 
 #welcome {
+    background-color: black;
     float: left;
-    padding: 160px;
+    padding: 150px;
+    margin-top: 132px;
+    height: 300px;
     position: absolute;
 }
 
 .col-md-4 {
+    background-color: black;
+    color: red;
     float: right;
     padding: 287px;
 }
@@ -23,7 +29,7 @@ p {
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 50px;
     color: red;
     font-family: 
 }
@@ -39,5 +45,13 @@ h3{
     margin: 20px auto;
     height: 43px;
     width: 161%;
+}
+
+.container {
+    background-color: black;
+}
+
+html {
+    background-color: black;
 }
 
