@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Upside Down</title>
-        
+
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -52,8 +52,13 @@
 // array of words
 var strangeWords = ["eleven", "hopper", "starcourt mall", "mad max", "demidog", "waffles", "hawkins"];
 
+startGame();
 
 //chooses word randomly
+function startGame () {
+console.log(wrongWord)
+document.getElementById("wrongGuess").innerHTML = "";
+
 var randNum = Math.floor(Math.random() * strangeWords.length);
 var rightWord = [];
 var wrongWord = [];
@@ -102,6 +107,7 @@ document.addEventListener('keypress', (event) => {
     // checks to see if user word matches guesses
         if(underScore.join('') == chosenWord) {
             alert('You Win');
+            startGame();
         }
     }   
         else {
@@ -135,7 +141,7 @@ document.getElementById("underscores").textContent = generateUnderscore().join('
 
 // Generate wins and losses counter on page 
 
-
+}
 
 
 </script>
