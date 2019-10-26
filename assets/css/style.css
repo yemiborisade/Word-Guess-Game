@@ -32,11 +32,12 @@ h3{
     font-size: 50px;
 }
 
-.underscore { 
+#underscores { 
     border: 3px solid black;
-    font-size: 100px;
+    font-size: 36px;
     text-align: center;
-    margin: 50px auto;
-    height: 150px;
-    width: 80%;
+    margin: 20px auto;
+    height: 43px;
+    width: 161%;
 }
+

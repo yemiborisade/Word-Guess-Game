@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>The Upside Down</title>
-
-    
+        
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -26,15 +25,18 @@
                                     <img src="https://2fvqxa3fxpfi2sm7tt1oe5ln-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/Stranger-Things-Header.jpg" alt="welcome" height="250" width="250">
                                     <br>
                                     <p>
-                                        Welcome to Hawkins Hangman! Press any key to venture to the upside down!
+                                        Welcome to Hawkins Hangman!
                                     </p>
+                                    <p>
+                                        Press any key to venture to the upside down!
+                                    </p> 
                             </div>
                     </div>
                     <div class="col-md-4">
                         <div id="underscores"></div>
                         Wins: <span id="wins"></span><br>
                         Losses: <span id="losses"></span><br>
-
+                        Guesses Left: <span id="numGuesses"></span><br>
                         <div id="wrongGuess">wrong guess</div>
                     </div>
                   </div>
@@ -52,23 +54,27 @@ var strangeWords = ["eleven", "hopper", "starcourt mall", "mad max", "demidog", 
 
 
 //chooses word randomly
-let randNum = Math.floor(Math.random() * strangeWords.length);
-let rightWord = [];
-let wrongWord = [];
-let chosenWord = strangeWords[randNum];
-let underScore = [];
+var randNum = Math.floor(Math.random() * strangeWords.length);
+var rightWord = [];
+var wrongWord = [];
+var chosenWord = strangeWords[randNum];
+var underScore = [];
 var wins = 0;
 var losses = 0;
+var guessesLeft = 10;
 var winsElem = document.getElementById("wins");
 var lossesElem = document.getElementById("losses");
 
+
 // dom manipulation
-let docUnderScore = document.getElementsByClassName('underscores');
-let docRightGuess = document.getElementsByClassName('rightGuess');
-let docWrongGuess = document.getElementsByClassName('wrongGuess');
+var docUnderScore = document.getElementsByClassName('underscores');
+var docRightGuess = document.getElementsByClassName('rightGuess');
+var docWrongGuess = document.getElementsByClassName('wrongGuess');
+document.getElementById("numGuesses").textContent = guessesLeft;
+
 
 // create underscores based on length of word
-let generateUnderscore = function() {
+var generateUnderscore = function() {
     for (let i = 0; i < chosenWord.length; i++) {
         underScore.push("_ ");
     }
@@ -77,8 +83,8 @@ let generateUnderscore = function() {
 
 // get users guess
 document.addEventListener('keypress', (event) => {
-    let keycode = event.keyCode;
-    let keyword = String.fromCharCode(keycode);
+    var keycode = event.keyCode;
+    var keyword = String.fromCharCode(keycode);
 
 // is users guess is right 
     if (chosenWord.indexOf(keyword) > -1) {
@@ -97,7 +103,15 @@ document.addEventListener('keypress', (event) => {
         if(underScore.join('') == chosenWord) {
             alert('You Win');
         }
-    } 
+    }   
+        else {
+            wrongWord.push(keyword);
+            guessesLeft--;
+            // changes to HTML
+            document.getElementById("numGuesses").textContent = guessesLeft;
+            document.getElementsByClassName("wrongGuess").textContent = wrongWord;
+        }
+
         if (wrongWord.indexOf(keyword) < 0) {
             wrongWord.push(keyword);
             document.getElementById("wrongGuess").textContent = wrongWord;
@@ -107,7 +121,7 @@ document.addEventListener('keypress', (event) => {
         if (underScore.indexOf("_ ") === -1) {
         console.log("wins")
         wins++;
-      } else if (wrongWord == chosenWord) {
+      } else if (wrongWord === chosenWord) {
         losses++;
       }
 
@@ -117,7 +131,7 @@ document.addEventListener('keypress', (event) => {
 
 });
 // console.log(generateUnderscore().join(''));
-document.getElementById("underscores").textContent = generateUnderscore().join('')
+document.getElementById("underscores").textContent = generateUnderscore().join(' ')
 
 // Generate wins and losses counter on page 
 
